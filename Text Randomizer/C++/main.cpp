@@ -60,12 +60,21 @@ void printText(int length, bool format, ostream& output){
 
     auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now());
 
-    if(format){
-        string temp = '{' + outputString + '}';
-        outputString = temp;
-    }
+    // if(format){
+    //     string temp = '{' + outputString + '}';
+    //     outputString = temp;
+    // }
 
-    output << ctime(&timenow);
-    output << "> " << outputString << "\n\n";
+    if(format){
+        //output << "{\n\t";
+
+        string time = ctime(&timenow);
+        time.pop_back();
+        output << "{\"Time\":\"" << time << "\", \"String\":\"" << outputString << "\"}\n\n";
+
+    } else {
+        output << ctime(&timenow);
+        output << "> " << outputString << "\n\n";
+    }
 
 }
