@@ -18,13 +18,16 @@ int main(){
     getPrintParams(perSec, secs, length, format, cout, cin);
 
     int timeout = 60000/perSec;
+    int count = 0;
 
     // Print
-    while(true){
+    while(count < (perSec * secs)){
 
         printText(length, format, cout);
          
         std::this_thread::sleep_for(std::chrono::milliseconds(timeout));
+
+        count++;
     }
     
 }
